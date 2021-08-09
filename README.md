@@ -1,3 +1,2 @@
-# Travel_Web_Project
-
-## 포트폴리오 겸용으로 첨삭 필요
+# Travel_Web_Project (메인 팀 프로젝트)
+### 2021.06 ~ 2021.08 (두 달)

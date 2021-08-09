@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <meta charset="UTF-8">
+    <title>✈️접근 거부</title>
+</head>
+<body>
+<div id="container">
+    <center>
+
+    <div style="margin-top:200px;"><img th:src="@{/images/no.png}" width="100px"  alt="접근불가" /></div>
+        <h1>요청하신 페이지 접근이 거부 되었습니다.</h1>
+        <h3>페이지에 접근할 수 있는 권한이 없어 해당페이지를 연결할 수 없습니다.</h3>
+        <h3>서비스 이용에 불편을 드려 죄송합니다.</h3>
+
+    <button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+    </center>
+</div>
+</body>
+</html>

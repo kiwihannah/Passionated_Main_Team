@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+<th:block th:fragment="topbarFragment">
+
+    <!-- Topbar -->
+        <nav class="navbar navbar-custom">
+            <a th:href="@{/}"><img class="main_logo_img" th:src="@{/images/logo.png}" /></a>
+            <ul class="navbar_logo">
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/list}"><i class="fas fa-pen-square icons">관리자</i></a></li>
+            </ul>
+            <ul class="navbar_menu">
+                <!--비회원, 회원, 어드민 -> 각자 권한에 맞게 버튼 노출-->
+                <li sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/user/login}"><i class="fas fa-sign-in-alt icons">로그인</i></a></li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user/logout}"><i class="fas fa-sign-out-alt icons">로그아웃</i></a></li>
+                <li sec:authorize="isAuthenticated()">
+                    <a sec:authorize="hasRole('MEMBER')" th:href="@{/order/bookingInfo}"><i class="fas fa-bookmark icons">예약관리</i></a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user/info}"><i class="fas fa-address-card icons">회원정보</i></a></li>
+            </ul>
+            <ul class="navbar_icons">
+                <li class="navbar_icons_home"><a th:href="@{/}"><i class="fas fa-home icons">홈</i></a></li>
+            </ul>
+        </nav>
+    </nav>
+</th:block>
+</html>

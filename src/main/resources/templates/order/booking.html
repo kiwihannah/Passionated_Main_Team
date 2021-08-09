@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<link rel="stylesheet" th:href="@{/css/button.css}"/>
+<link rel="stylesheet"th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" >
+<link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+<script th:src="@{https://code.jquery.com/jquery-3.2.1.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap-datepicker.js}" type="text/javascript"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+<script>
+/* datepicker 사용 - 현재 날짜 기준 이전 날짜들은 선택 되지 않도록 지정 */
+$(document).ready(function () {
+    $('#dateIn').datepicker({
+        dateFormat: "yy-mm-dd",
+        clearBtn : true,
+        autoclose: true,
+        minDate: 0,
+        multidate : true,
+        multidateSeparator :",",
+        todayHighlight: true
+    });
+    $('#dateOut').datepicker({
+        dateFormat: "yy-mm-dd",
+        clearBtn : true,
+        autoclose: true,
+        multidate : true,
+        minDate:0,
+        multidateSeparator :",",
+        todayHighlight: true
+    });
+});
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>✈️예약 사이트</title>
+</head>
+<body>
+
+<div class="upload-container">
+    <form method="post" th:object="${order}" action="/order/payment">
+
+        <div class="upload-header">
+            <h2>예약하기 🤠</h2>
+            <input type="hidden" th:value="${product.proNo}" name="proNo"/>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        </div>
+        <div class="upload-content">
+            <div class="form-group row" >
+
+                <div class="col-md-6 mt-5" >
+                    <label>패키지 가격</label>
+                    <div class="input-group date">
+                        <!--<input type="text" class="form-control" id="OrderPrice" th:field="*{OrderPrice}" />-->
+                        <input type="text" class="form-control" name="OrderPrice" th:value="${product.price}"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <label for="OrderQty">인원수</label>
+                    <div class="input-group date">
+                        <input type="number" class="form-control" id="OrderQty" th:field="*{OrderQty}" />
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="form-group row">
+                <div class="col-md-6 mt-5">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="dateIn" th:field="*{dateIn}"
+                               placeholder="🛫 여행 시작일"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="dateOut" th:field="*{dateOut}"
+                               placeholder="🛬 여행 마지막일"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:right;">
+            <button class="button" type="button" onclick="history.go(-1)" >
+                뒤로가기
+            </button>
+            <button class="button" type="submit" >
+                예약하기
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

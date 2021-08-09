@@ -1,0 +1,669 @@
+body {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+.containers {
+    position: relative;
+}
+.slider {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.slides {
+/*    background: green;*/
+    width: 500%;
+    height: 500px;
+    display: flex;
+}
+.slides input{
+    display: none;
+}
+.slide {
+    width: 20%;
+    transition: 2s;
+}
+.slide img {
+    width: 950px;
+     height: 500px;
+     position: static;
+     border-radius: 10px;
+}
+
+/*css for manual slide navigation*/
+
+.navigation-manual {
+    position: absolute;
+    width: 100%;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn {
+    border: 2px solid #1839ff;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+.manual-btn:not(:last-child) {
+    margin-right: 40px;
+}
+.manual-btn:hover {
+    background: #1839ff;
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+    margin-left: -20%;
+}
+
+#radio3:checked ~ .first{
+    margin-left: -40%;
+}
+
+#radio4:checked ~ .first{
+    margin-left: -60%;
+}
+
+/*css for automatic navigation */
+
+.navigation-auto {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 460px;
+}
+
+.navigation-auto div {
+    border: 2px solid #1839ff;
+    padding: 4px;
+    border-radius: 10px;
+    transform: 1s;
+}
+
+.navigation-auto div:not(:last-child) {
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+    background: #FFFFFF;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+    background: #FFFFFF;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+    background: #FFFFFF;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+    background: #FFFFFF;
+}
+.container {
+    display: fixed;
+    width: 95%;
+    background-color: #16a085;
+    z-index: 1;
+}
+
+[id="slide01"]:checked ~ .slidelist .slideitem {
+   transform: translateX(0);
+   animation: slide01 10s infinite
+}
+
+[id="slide02"]:checked ~ .slidelist .slideitem {
+   transform: translateX(-100%);
+   animation: slide02 10s infinite
+}
+
+[id="slide03"]:checked ~ .slidelist .slideitem {
+   transform: translateX(-200%);
+   animation: slide03 10s infinite
+}
+
+[id="slide04"]:checked ~ .slidelist .slideitem {
+   transform: translateX(-300%);
+   animation: slide04 10s infinite
+}
+
+@keyframes slide01 { 0% {left: 0%;} /*첫 번째 스크린*/
+      25%{left:0%;} /*두 번째로 위치 이동*/
+      48%{left:-100%;} /*두 번째로 위치 이동, 두 번쨰 스크린*/
+      50%{left:-100%;} /*세 번째로 위치 이동*/
+      73%{left:-200%;} /*세 번째로 위치 이동, 세 번쨰 스크린*/
+      75%{left:-200%;} /*네 번째로 위치 이동, 네 번째 스크린*/
+      98%{left:-300%;} /*네 번째 스크린*/
+      100%{left:0%} /*첫 번째 스크린 이동*/
+      }
+@keyframes slide02 { 0% {left: 0%;} /*첫 번째 스크린*/
+   23%{left:0%;}
+   25%{left:-100%;}
+   48%{left:-100%;}
+   50%{left:-200%;}
+   73%{left:-200%;}
+   75%{left:100%;} /*첫 스크린 이동*/
+   98%{left:100%;} /*첫 스크린 이동*/
+   100%{left:0%}
+}
+@keyframes slide03 { 0% {left: 0%;} /*첫 번째 스크린*/
+   23%{left:0%;}
+   25%{left:-100%;}
+   48%{left:-100%;}
+   50%{left:200%;}
+   73%{left:200%;}
+   75%{left:100%;} /*첫 스크린 이동*/
+   98%{left:100%;} /*첫 스크린 이동*/
+   100%{left:0%}
+}
+@keyframes slide04 { 0% {left: 0%;} /*첫 번째 스크린*/
+   23%{left:0%;}
+   25%{left:300%;}
+   48%{left:300%;}
+   50%{left:200%;}
+   73%{left:200%;}
+   75%{left:100%;} /*첫 스크린 이동*/
+   98%{left:100%;} /*첫 스크린 이동*/
+   100%{left:0%}
+}
+* {
+   font-family: 'Nunito', sans-serif;
+   box-sizing: border-box;
+   text-transform: capitalize;
+   outline: none;
+   border: none;
+   text-decoration: none;
+   transition: all .2s linear;
+   /*width: 140px;*/
+}
+body {
+   margin: 0;
+   padding: 0;
+}
+html {
+   font-size: 62.5%;
+   overflow-x: hidden;
+   scroll-padding-top: 6rem;
+   scroll-behavior: smooth;
+}
+
+section {
+   padding: 2rem 9%;
+   padding-top: 10%;
+}
+
+.heading {
+   text-align: center;
+   padding: 2.5rem 0
+}
+
+.heading i {
+   color: #0f5aba;
+}
+
+.heading span {
+   font-size: 3.5rem;
+   background: white;
+   color: var(- -black);
+   border-radius: .5rem;
+   padding: .2rem 1rem;
+}
+
+.heading-best span.space {
+   background: none;
+}
+.heading-best {
+    text-align: center;
+    padding: 2.5rem 0;
+    position: relative;
+    top: 115px;
+}
+
+.heading-best i {
+   color: #ffba00;
+}
+
+.heading-best span {
+   font-size: 3.5rem;
+   background: white;
+   color: var(- -black);
+   border-radius: .5rem;
+   padding: .2rem 1rem;
+}
+
+.heading-best span.space {
+   background: none;
+}
+
+.btn_main { /*버튼 형식*/
+   margin-top: 1rem;
+   background: none;
+   color: #fff;
+   padding: auto 0;
+   border: auto 0;
+   cursor: pointer;
+   font-size: 32px;
+}
+
+.btn_main:hover {
+   background: rgba(255, 165, 0, .2);
+   color: var(- -orange);
+}
+
+header {
+   position: fixed;
+   background: #16a085;
+   z-index: 1;
+}
+
+header .logo {
+   font-size: 2.5rem;
+   font-weight: bolder;
+   color: #fff;
+   text-transform: uppercase;
+}
+
+header .logo span {
+   color: var(- -orange);
+}
+
+header .navbar a {
+   color: #fff;
+   font-size: 2rem;
+   margin: 0 .8rem;
+}
+
+header .icons i {
+   font-size: 2.5rem;
+   color: #fff;
+   cursor: pointer;
+   margin-right: 2rem;
+}
+
+header .icons i:hover {
+   color: var(- -orange);
+}
+
+header .search-bar-container {
+   position: absolute;
+   top: 100%;
+   left: 0;
+   right: 0;
+   padding: 1.5rem 2rem;
+   background: #333;
+   border-top: .1rem solid rgba(255, 255, 255, .2);
+   display: flex;
+   align-items: center;
+   z-index: 1001;
+   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+
+header .search-bar-container.active {
+   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+header .search-bar-container #search-bar {
+   width: 100%;
+   padding: 1rem;
+   text-transform: none;
+   color: #333;
+   font-size: 1.7rem;
+   border-radius: .5rem;
+}
+
+header .search-bar-container label {
+   color: #fff;
+   cursor: pointer;
+   font-size: 3rem;
+   margin-left: 1.5rem;
+}
+
+header .search-bar-container label:hover {
+   color: var(- -orange);
+}
+
+#menu-bar {
+   color: #fff;
+   border: .1rem solid #fff;
+   border-radius: .5rem;
+   font-size: 3rem;
+   padding: .5rem 1.2rem;
+   cursor: pointer;
+   display: none;
+}
+
+.home {
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-flow: column;
+   position: relative;
+   z-index: 0;
+}
+
+.home .content {
+   text-align: center;
+}
+
+.home .content h3 {
+   font-size: 4.5rem;
+   color: black;
+   text-transform: uppercase;
+   text-shadow: 0 .3rem .5rem rgba(0, 0, 0, .1);
+}
+
+.home .content p {
+   font-size: 2.5rem;
+   color: black;
+   padding: .5rem 0;
+}
+
+.home .video-container video {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+}
+
+.home .controls {
+   padding: 1rem;
+   border-radius: 5rem;
+   background: rgba(0, 0, 0, .7);
+   position: relative;
+   top: 10rem;
+}
+
+.home .controls .vid-btn {
+   height: 2rem;
+   width: 2rem;
+   display: inline-block;
+   border-radius: 50%;
+   background: #fff;
+   cursor: pointer;
+   margin: 0 .5rem;
+}
+
+.home .controls .vid-btn.active {
+   background: var(- -orange);
+}
+
+.sms {
+   position: fixed;
+   top: 50%;
+   right: 20px;
+   transform: translateY(-50%);
+}
+
+.sms ul { /*margin, padding 지워서 아예 붙여넣기*/
+   margin: 0;
+   padding: 0;
+}
+
+.sms ul li {
+   list-style: none; /*형식 지우기*/
+   margin: 5px 0;
+}
+
+.sms ul li a {
+   width: 50px;
+   height: 50px;
+   line-height: 50px;
+   font-size: 25px;
+   color: #fff;
+   background: #16a085;
+   display: block;
+   text-align: center;
+   position: relative;
+   border-radius: 50%;
+}
+.sms ul li a:hover {
+    color:  #0C4F3C;
+}
+.book {
+    padding-top: 2.5%;
+}
+
+.book .row {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1.5rem;
+   align-items: center;
+}
+
+.book .row .image {
+   flex: 1 1 40rem;
+}
+
+.book .row .image img {
+   width: 100%;
+}
+
+.book .row form {
+   flex: 1 1 40rem;
+   padding: 10px;
+   box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+   border-radius: .5rem;
+   background-color: #c3e2dd;
+}
+
+.book .row form .inputBox {
+   text-align: center;
+   padding: 0px;
+   margin: 20 20px;
+   display: block;
+}
+
+/*searching bar updated start*/
+select {
+   background-color: white;
+   border: white;
+   border-radius: 4px;
+   display: inline-block;
+   line-height: 1.5em;
+   text-align: center;
+   padding: -1rem 10rem 1rem 10rem;
+   width: 280px;
+   height: 55px;
+   margin: 20px 18px 20px 18px;
+   /*reset*/
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+}
+
+select.minimal {
+   font-size: 20px;
+   text-align: center;
+   background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, #ccc, #ccc);
+   background-position: right center;
+   background-size: 10px 10px;
+   padding: 10px;
+   background-repeat: no-repeat;
+}
+
+select.minimal:focus {
+   background-image: linear-gradient(45deg, green 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, green 50%),
+      linear-gradient(to right, #ccc, #ccc);
+   background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em,
+      calc(100% - 2.5em) 0.5em;
+   background-size: 5px 5px, 5px 5px, 1px 1.5em;
+   background-repeat: no-repeat;
+   border-color: green;
+   outline: 0;
+}
+
+select:-moz-focusing {
+   color: transparent;
+   text-shadow: 0 0 0 #000;
+}
+
+/*searching bar updated end*/
+.book .row form .inputBox input {
+   width: 100%;
+   padding: 10px;
+   border: .10px rgba(0, 0, 0, .1);
+   font-size: 1.7rem;
+   color: black;
+   text-transform: none;
+}
+
+.book .row form .inputBox h3 {
+   font-size: 2rem;
+   padding: 1rem 0;
+   color: black;
+}
+
+.packages .box-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2rem;
+}
+
+.packages .box-container .box {
+   flex: 1 1 30rem;
+   border-radius: .5rem;
+   overflow: hidden;
+   box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+}
+
+.packages .box-container .box img {
+   height: 25rem;
+   width: 100%;
+   object-fit: cover;
+}
+
+.packages .box-container .box .content {
+   padding: 2rem;
+   margin: 15px;
+}
+
+.packages .box-container .box .content h3 a {
+   font-size: 2rem;
+   font-weight: bold;
+   color: #16a085;
+}
+.packages .box-container .box .content h3 i {
+   color:  #16a085;
+}
+
+.packages .box-container .box .content p {
+   font-size: 1.7rem;
+   color: black;
+   padding: 1rem 0;
+}
+
+.gallery .box-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1.5rem;
+   border: 0;
+   border-radius: 0;
+}
+
+.gallery .box-container .box1 {
+   overflow: hidden;
+   box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+   border: 0.1rem solid #fff;
+   border-radius: .5rem;
+   flex: 1 1 30rem;
+   height: 43rem;
+   position: relative;
+}
+
+.gallery .box-container .box1 img {
+   display: block;
+   margin: 0px auto;
+}
+
+.bestIcon {
+    position: absolute;
+     top: 10px;
+     width: 163px;
+     left: 15px;
+     height: 48px;
+     border-radius: 10px;
+     color: white;
+     background: #ffba00;
+     font-size: 23px;
+     font-weight: bold;
+     z-index: 1;
+}
+.bestBtn:hover {
+    background: #ffba00;
+    opacity: 0.8;
+}
+
+.gallery .box-container .box1:hover .content {
+   top: 0;
+}
+
+.gallery .box-container .box1 .content h3 {
+   font-size: 2.5rem;
+   color: white;
+}
+
+.gallery .box-container .box1 .content p {
+   font-size: 1.5rem;
+   color: white;
+   padding: .5rem 0;
+}
+
+.gallery .box-container .box2 {
+   overflow: hidden;
+   box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+   border: 0.1rem solid #fff;
+   border-radius: .5rem;
+   flex: 1 1 30rem;
+   height: 43rem;
+   position: relative;
+}
+
+.gallery .box-container .box2 img {
+   height: 100%;
+   width: 100%;
+   display: block;
+   margin: 0px auto;
+   z-index: 2;
+}
+.best_icon {
+   width: 130px;
+    height: 90px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    left: -250px;
+    top: -10px;
+}
+.gallery_img {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+}
+.img_btn {
+    background: #c3e2dd;
+    font-size: 35px;
+}
+.img_btn i {
+    color: #ffba00;
+}
+.img_btn i:hover {
+    color: #0c71e0;
+}

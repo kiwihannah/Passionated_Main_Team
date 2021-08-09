@@ -1,0 +1,129 @@
+/* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
+
+/* 슬라이드 Style */
+.slidebox1 {
+max-width:1000px;
+margin:0 auto;
+}
+.slidebox1 .slidelist1 {
+white-space:nowrap;
+font-size:0;
+overflow:hidden;
+}
+.slidebox1 .slidelist1 .slideitem1 {
+position:relative;display:inline-block;
+vertical-align:middle;
+width:100%;
+transition:all 1s;
+}
+.slidebox1 .slidelist1 .slideitem1 > a {
+display:block;
+width:auto;
+position:relative;
+}
+.slidebox1 .slidelist1 .slideitem1 > a img {
+max-width:100%;
+}
+
+.slidebox1 .slidelist1 .slideitem1 > a label.prev {
+left:20px;
+background:#333 url('../images/left-arrow.png') center center / 50% no-repeat;
+}
+.slidebox1 .slidelist1 .slideitem1 > a label.next {
+right:20px;background:#333 url('../images/right-arrow.png') center center / 50% no-repeat;
+}
+
+
+
+[name="slide1"] {display:none;}
+#slide01:checked ~ .slidelist1 .slideitem1 {
+transform:translateX(0);
+animation:slide01 15s infinite;
+}
+#slide02:checked ~ .slidelist1 .slideitem1 {
+transform:translateX(-100%);
+animation:slide02 15s infinite;
+}
+#slide03:checked ~ .slidelist1 .slideitem1 {
+transform:translateX(-200%);
+animation:slide03 15s infinite;
+}
+
+
+
+
+@keyframes slide01 {
+	0% {left:0%;}
+	33% {left:0%;}
+	34% {left:-100%}
+	66% {left:-100%;}
+	67% {left:-200%;}
+	99% {left:-200%;}
+	100% {left:0%;}
+}
+
+@keyframes slide02 {
+	0% {left:0%;}
+	33% {left:0%;}
+	34% {left:-100%;}
+	66% {left:-100%;}
+	67% {left:100%;}
+	99% {left:100%;}
+	100% {left:0%;}
+}
+
+@keyframes slide03 {
+	0% {left:0%;}
+	33% {left:0%;}
+	34% {left:200%;}
+	66% {left:200%;}
+	67% {left:100%;}
+	99% {left:100%;}
+	100% {left:0%;}
+}
+
+#lightbox-overlay{
+opacity:0;
+pointer-events:none;
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background-color:rgba(29,31,33,.95);
+transition:opacity .3s ease-in;
+}
+
+#lightbox-overlay.visible{
+opacity:1;
+pointer-events:auto;
+}
+
+ .modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.4);
+            }
+        .modal.show {
+            display: block;
+        }
+        .modal_body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            width: 400px;
+            height: 600px;
+            padding: 40px;
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 2px 3px 0 rgba(34, 36,38,0.15);
+            transform: translateX(-50%) translateY(-50%);
+        }

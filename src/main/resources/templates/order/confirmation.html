@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+    <meta charset="UTF-8"/>
+    <title>✈️결제완료 예약확인</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <!--script for i'mport-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+</head>
+<body>
+
+
+<div class="upload-container">
+    <div class="upload-header" style="text-align:center;">
+        <th:block sec:authorize="isAuthenticated()">
+            <h2>🎊<span sec:authentication="principal.username"></span> 님, 예약해 주셔서 감사합니다! 🎊</h2>
+        </th:block>
+    </div>
+
+    <div class="upload-content">
+        <div class="form-group row">
+            <h3 class="mt-5">・주문 번호: <strong th:name="orderId" th:text="${order.orderId}"></strong></h3>
+            <h3 class="mt-5">・결제 금액: <strong th:name="orderPrice" th:text="${order.orderPrice}"></strong>원</h3>
+            <h3 class="mt-5">・인원 수: <strong th:name="orderQty" th:text="${order.orderQty}"></strong>명</h3>
+            <h3 class="mt-5">・총 금액: <strong th:name="totalPrice" th:text="${order.orderPrice * order.orderQty}"></strong>원</h3>
+
+            <hr/>
+
+            <h3 class="mt-5">🛫 여행 시작일: <strong th:name="dateIn"
+                                                th:text="${order.dateIn}"></strong></h3>
+            <h3 class="mt-5">🛬 여행 마지막일: <strong th:name="dateOut"
+                                                 th:text="${order.dateOut}"></strong></h3>
+        </div>
+        <div style="text-align:right;">
+            <a th:href="@{/}" class="button" style="font-size: 0.8rem;  text-decoration:none;">홈으로 돌아가기</a>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

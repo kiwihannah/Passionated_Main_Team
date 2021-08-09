@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>
+    <link th:href="@{/css/itemList.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>✈️개인 리뷰 목록</title>
+
+</head>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<body style=" background-color: #16a085; min-height:0px;">
+<div class="container gallery-container" style="margin-top:50px; min-height:650px;">
+    <div style="text-align: right;">
+
+    <button class="button-hover" th:onclick="|window.location.href='/'|"  >홈으로 가기 😎</button>
+        <h1> <span sec:authentication="principal.username"></span> 리뷰 정보(◍•ᴗ•◍)❤ </h1>
+
+    </div>
+
+        <div class="container">
+        <div class="table-list">
+            <table class="table_box">
+                <thead>
+                <tr>
+                    <th class="th-list">No</th>
+                    <th class="th-list">제목</th>
+                    <th class="th-list">작성자</th>
+                    <th class="th-list">작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article : ${articleList}">
+                    <td th:text="${article.id}"></td>
+                    <td><a th:href="@{/myReview/detail/{id}(id = ${article.id})}" th:text="${article.title}" class="articleTitle"></a></td>
+                    <td th:text="${article.writer}"></td>
+                    <td th:text="${article.registerDate}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--페이징 시작-->
+        <nav style="text-align: center">
+
+            <ul class="pagination"
+                th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},
+              last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
+
+                <li>
+                    <a th:href="@{/myReview/list(page=1)}" aria-label="First">
+                        <span aria-hidden="true">👈 처음</span>
+                    </a>
+                </li>
+
+                <li th:class="${articleList.first} ? 'disabled'">
+                    <a th:href="${articleList.first} ? '#' : @{/myReview/list(page=${articleList.number})}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">⬅</span>
+                    </a>
+                </li>
+
+                <li th:each="page: ${#numbers.sequence(start, last)}"
+                    th:class="${page == articleList.number + 1} ? 'active'">
+                    <a th:text="${page}" th:href="@{/myReview/list(page=${page})}">&nbsp;</a>
+                </li>
+
+                <li th:class="${articleList.last} ? 'disabled'">
+                    <a th:href="${articleList.last} ? '#' : @{/myReview/list(page=${articleList.number + 2})}"
+                       aria-label="Next">
+                        <span aria-hidden="true">➡</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/myReview/list(page=${articleList.totalPages})}" aria-label="Last">
+                        <span aria-hidden="true">마지막 👉</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!--페이징 처리 완료-->
+    </div>
+
+</div>
+    <script type="text/javascript">
+   function clearSearch() {
+      window.location = "[[@{article/list}]]";
+   }
+</script>
+
+</body>
+</html>

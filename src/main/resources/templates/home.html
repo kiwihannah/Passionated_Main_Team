@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+  <title>Home</title>
+  <!--css-->
+  <link rel="stylesheet" th:href="@{/css/home.css}" >
+  <link rel="stylesheet" th:href="@{/css/button.css}" >
+  <link rel="stylesheet" th:href="@{/css/event.css}" >
+  <!--js -->
+  <!-- loader js link-->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+  <script th:src="@{/js/home.js}"></script>
+</head>
+
+<th:block layout:fragment="content">
+  <body>
+  <!-- Begin Page Content -->
+  <div class="containers">
+    <!--image slider start-->
+    <div class="slider">
+      <div class="slides">
+        <!--radio button start-->
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+        <!--radio button end-->
+        <!--slide image start-->
+        <div class="slide first">
+          <a th:href="@{/board/get?proNo=83&N=40.42480319&E=-3.70357955627484}">
+            <img src="images/slideImg1.PNG" alt=""></a>
+        </div>
+        <div class="slide">
+          <a th:href="@{/board/get?proNo=84&N=37.55025073462979&E=126.98688692985411}">
+            <img src="images/slideImg2.png" alt=""></a>
+        </div>
+        <div class="slide">
+          <a th:href="@{/board/get?proNo=85&N=11.9676016827219&E=121.924653328035}">
+            <img src="images/mainImg8.jpg" alt=""></a>
+        </div>
+        <div class="slide">
+          <a th:href="@{/board/get?proNo=99&N=38.0972436335177&E=128.314673746238}">
+            <img src="images/slideImg4.jpg" alt=""></a>
+        </div>
+        <!--slide image end-->
+        <!--automatic navigation start-->
+        <div class="navigation-auto">
+          <div class="auto-btn1"></div>
+          <div class="auto-btn2"></div>
+          <div class="auto-btn3"></div>
+          <div class="auto-btn4"></div>
+        </div>
+        <!--automatic navigation end-->
+      </div>
+      <!--manual navigation start-->
+      <div class="navigation-manual">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+      </div>
+      <!--manual navigation end-->
+    </div>
+  </div>
+  <!-- book section starts  -->
+  <section class="book" id="book">
+    <div class="row">
+      <form method="get" th:action="@{board/list}" th:object="${listSearch}" name="searchFrm">
+        <div class="inputBox">
+          <select th:name="region" class="minimal">
+            <option value="">여행지</option>
+            <option th:value="Korea">국내</option>
+            <option th:value="Japan">일본</option>
+            <option th:value="China">중국</option>
+            <option th:value="Southeast_Asia">동남아</option>
+            <option th:value="Europe">유럽</option>
+          </select>
+          <select th:name="season" class="minimal">
+            <option value="">계절</option>
+            <option th:value="Spring">봄</option>
+            <option th:value="Summer">여름</option>
+            <option th:value="Autumn">가을</option>
+            <option th:value="Winter">겨울</option>
+          </select>
+          <select th:name="theme" class="minimal">
+            <option value="">테마</option>
+            <option th:value="Family">가족</option>
+            <option th:value="Friend">친구</option>
+            <option th:value="Couple">커플</option>
+            <option th:value="Filial">효도</option>
+          </select>
+          <button type="submit" class="img_btn" id="img_btn"><a th:href="@{/board/list}"><i class="fas fa-search"></i></a></button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="packages" id="package">
+    <h1 class="heading">
+      <span><i class="fas fa-plane-departure">너나들이와 지금 떠나요</i></span>
+    </h1>
+
+    <div class="box-container">
+      <div class="box">
+        <a th:href="@{/board/get?proNo=97&N=33.50319862&E=126.5334234}"><img src="images/mainImg1.jpg"></a>
+        <div class="content">
+          <h3>
+            <!--<a th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}">-->
+            <!--<a th:href="@{/board/list}">-->
+            <a th:href="@{/board/get?proNo=97&N=33.50319862&E=126.5334234}">
+              여럿이라 더 좋은 제주(3박4일)</a>
+          </h3>
+          <p>여럿이 방문한 제주!<br>성인4명도 아동동반도 가능한<br>4인1실 추천 상품!</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a th:href="@{/board/get?proNo=98&N=7.974431489&E=98.3228021196675}"><img src="images/mainImg2.jpg" ></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=98&N=7.974431489&E=98.3228021196675}">[한정특가](♨힐링형) 푸켓 특급<br>3박5일</a>
+          </h3>
+          <p> 태국 푸켓으로 떠나는 힐링형 여행!
+            <br>청정의 푸른 바다와 해안,<br>스노클링이 준비되어 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a th:href="@{/board/get?proNo=89&N=29.59673368433321&E=126.76973700388}"><img src="images/mainImg3_china.PNG" alt=""></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=89&N=29.59673368433321&E=106.4824473451977}">중국 장강에 둘러싸인 충칭<br>(5박6일)</a>
+          </h3>
+          <p>중국 중앙의 역사와 전통의 도시<br> 충칭에서의 여유!
+            <br>사색에 잠기는 여행을 즐겨보세요~</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a th:href="@{/board/get?proNo=100&N=35.6778117268468&E=139.769045022743}"><img src="images/mainImg4_japan.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=100&N=35.6778117268468&E=139.769045022743}">[안심케어]도쿄/요코하마/하코네<br>일본 3일(전일관광)</a>
+          </h3>
+          <p>주저할 필요 없이 떠나는, 도쿄!<br>도쿄 근교를 중심으로 떠나는<br> 근대와 현대의 여행</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a th:href="@{/board/get?proNo=101&N=1.38532851440504&E=103.808346720708}"><img src="images/mainImg5_taipei.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=101&N=24.0307242009587&E=120.541387541541}">[안심케어]대만 3박5일(1일자유)</a>
+          </h3>
+          <p>대만 시내 구석구석을 돌아보며<br>떠날 준비가 됬나요?<br> 동남아 여행지의 정석, 대만!</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a th:href="@{/board/get?proNo=96&N=22.4101771447561&E=114.116511822687}"><img src="images/mainImg6_hongkong.PNG" alt=""></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=96&N=22.4101771447561&E=114.116511822687}">
+              아시아의 진주 : 홍콩</a>
+          </h3>
+          <p>홍콩을 뺴지 말고 <br>
+            문화와 아름다움이 있는<br>고풍스러운 유럽으로</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- packages section ends -->
+
+
+  <!-- special section starts -->
+  <h1 class="heading-best">
+    <span><i class="fas fa-calendar-check">특별한 날을 만드는 건 어때요?</i></span>
+  </h1>
+  <section class="packages" id="packages">
+    <div class="box-container">
+
+      <div class="box">
+        <a th:href="@{/board/get?proNo=94&N=39.8829202317284&E=116.396896295458}"><img src="images/mainImg7.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=94&N=39.8829202317284&E=116.396896295458}">[취향저격 갓성비]월드체인호텔<br>/온천/북경4일</a>
+          </h3>
+          <p>대륙의 기상, 중국 베이징<br>
+            월드체인 숙소와 함께 편안한 여행으로<br> 역사의 중심지로 출발!</p>
+        </div>
+      </div>
+      <div class="box">
+        <a th:href="@{/board/get?proNo=85&N=11.9677696110923&E=121.924481743788}"><img src="images/mainImg8.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=85&N=11.9676016827219&E=121.924653328035}">[인기절정]보라카이/헤난<br>크리스탈샌즈 3박5일</a>
+          </h3>
+          <p>형형색색의 산호와 열대어를<br> 만나러 가는 시간<br>보라카이에서 즐기는 스노쿨링과 마사지</p>
+        </div>
+      </div>
+      <div class="box">
+        <a th:href="@{/board/get?proNo=95&N=95.5043193052513&E=130.857324675631}"><img src="images/mainImg9.png" alt=""></a>
+        <div class="content">
+          <h3>
+            <a th:href="@{/board/get?proNo=95&N=95.5043193052513&E=130.857324675631}">[바캉스]■울릉도 허니문 관광■<br>(2박3일 관광)</a>
+          </h3>
+          <p>섬에서 섬으로 연결된 울릉도에서<br> 전망을 바라보며 걷는 활동적인 여행<br>
+            자연과 함께하는 생태체험!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- special section ends -->
+  <!-- gallery section starts  -->
+
+  <section class="gallery" id="gallery">
+
+    <h1 class="heading">
+      <span><i class="fas fa-hand-peace">베스트 리뷰 및 이벤트</i></span>
+    </h1>
+
+    <div class="box-container">
+      <div class="box1">
+        <a th:href="@{/bestReview/list}">
+          <img class="gallery_img" src="images/couple.jpg" alt=""></a>
+        <div class="content">
+          <button class="bestIcon"  type="button"
+                  th:onclick="'location.href=\''+ @{/bestReview/list} + '\''" disabled value="">Best Review</button>
+          <button class="bestBtn" type="button"
+                  th:onclick="'location.href=\''+ @{/bestReview/list} + '\''">더보기</button>
+        </div>
+      </div>
+
+      <div class="box2">
+
+        <div class="slidebox1">
+          <input type="radio" name="slide1" id="slide01" checked>
+          <input type="radio" name="slide1" id="slide02">
+          <input type="radio" name="slide1" id="slide03">
+          <ul class="slidelist1" style="padding:0px;">
+            <li class="slideitem1">
+              <a>
+                <label for="slide03" class="prev"></label>
+                <img src="./images/event-01.jpg" style="height:360px;"/>
+                <!-- Button trigger modal -->
+                <button type="button" class="button"  style="width:200px; font-size: 1.1rem; margin: 20px;"
+                        th:onclick="'location.href=\''+ @{/event/event1} + '\''">
+                  ✨ 자세한 내용보기 ✨
+                </button>
+                <label for="slide02" class="next"></label>
+              </a>
+            </li>
+            <li class="slideitem1">
+              <a>
+                <label for="slide01" class="prev"></label>
+                <img src="./images/event-02.png" style="height:360px;"/>
+                <!-- Button trigger modal -->
+                <button type="button" class="button" style="width:200px; font-size: 1.1rem; margin: 20px;"
+                        th:onclick="'location.href=\''+ @{/event/event2} + '\''">
+                  ✨ 자세한 내용보기 ✨
+                </button>
+                <label for="slide03" class="next"></label>
+              </a>
+            </li>
+            <li class="slideitem1">
+              <a>
+                <label for="slide02" class="prev"></label>
+                <img src="./images/event-03.png" style="height:360px;"/>
+                <!-- Button trigger modal -->
+                <button type="button" class="button" style="width:200px; font-size: 1.1rem; margin: 20px;"
+                        th:onclick="'location.href=\''+ @{/event/event3} + '\''" >
+                  ✨ 자세한 내용보기 ✨
+                </button>
+                <label for="slide01" class="next"></label>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- gallery section ends -->
+  </body>
+</th:block>
+</html>

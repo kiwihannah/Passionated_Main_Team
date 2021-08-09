@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <title>여행 지역 지도</title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+
+</head>
+<body>
+<div id='map'></div>
+
+<script>
+
+<!--파라미터 받기-->
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+<!--받은 걸로 변수 선언-->
+var E = getParameterByName('E');
+var N = getParameterByName('N');
+
+<!--기본 맵-->
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2l3aWhhbm5haCIsImEiOiJja3IydGp6emsyZmc5Mm5tbnh1ZzA3bXZlIn0.FBt4dq5Av6NR1IbMttcyMA';
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v10',
+  center: [E, N],
+  zoom: 7
+});
+
+</script>
+
+</body>
+</html>

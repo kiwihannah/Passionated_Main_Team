@@ -1,0 +1,76 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <title>✈️로그인</title>
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/signIn}" method="post">
+    <a th:href="@{/}"><img class="mb-6" th:src="@{/images/logo.png}" width="500" alt="main_logo_img"></a>
+    <div class="login-form">
+
+        <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
+        <h1 class="h3 mb-3 font-weight-normal">너와 함께 가고 싶은 , 너나들이</h1>
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+            아이디 혹은 비밀번호가 틀립니다.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-primary" role="alert">
+            로그아웃이 되었습니다.
+        </div>
+
+        <label for="username" class="sr-only">이메일</label>
+        <input type="email" id="username" name="username" class="form-control" placeholder="이메일" required autofocus />
+        <label for="password" class="sr-only">비밀번호</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required />
+
+        <div class="left">
+            <label class="checkbox" for="rememberMe" aria-describedby="rememberMeHelp">
+                <input type="checkbox" name="remember-me" id="rememberMe" checked/>
+                <span class="icon"></span>
+                <span class="text">로그인유지</span>
+            </label>
+        </div>
+
+        <!--<div class="form-group form-check">
+            <input id="rememberMe" type="checkbox" name="remember-me" class="form-check-input" checked/>
+            <label class="form-check-label" for="rememberMe" aria-describedby="rememberMeHelp">로그인 유지</label>
+        </div>-->
+        <input class="submit-btn " type="submit" value="로그인">
+        <a type="button" class="btn btn-secondary btn-lg btn-block" th:href="@{/verifyEmail}">인증 후 가입</a>
+        <br>
+        <a th:href="@{/findId}">아이디 찾기</a>
+        &nbsp;
+        <a th:href="@{/findInfo}">비밀번호 찾기</a>
+    </div>
+</form>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.parameterName}">
+    <title>✈️리뷰수정</title>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link
+            href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+            rel="stylesheet">
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script
+            src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <!-- include summernote css/js-->
+    <link
+            href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+            rel="stylesheet">
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+
+</head>
+<body>
+
+<div class="upload-container">
+    <div class="upload-header">
+        <h3 style="margin-bottom: 25px;">수정하기 “φʕ•ᴥ•｡ʔ</h3>
+    </div>
+    <div class="upload-content">
+        <form id="articleForm" role="form"
+              th:action="@{/article/updated(id = ${article.id}, proNo = ${proNo})}"
+              method="post">
+            <br style="clear: both">
+
+            <input type="hidden" th:name="proNo" th:value="${proNo}">
+            <div class="form-group">
+                <input th:value="${article.title}" type="text" class="form-control" id="title" name="title"
+                       placeholder="제목" required>
+            </div>
+            <div class="form-group">
+			<textarea th:field="${article.content}" class="form-control" id="summernote" name="content"
+                      placeholder="content" maxlength="140" rows="7"></textarea>
+            </div>
+
+            <br/>
+            <br/>
+
+            <div style="text-align : right;">
+                <button type="submit" id="sucker" name="submit" style="margin-top:0px; margin-bottom:0px; font-size:15px;" class="sucker">수정하기 😊
+                </button>
+                <a type="button" style="text-decoration:none; font-size:15px;" class="button" onclick="history.go(-1)">취소하기 😉</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script th:inline="javascript">
+		$(document).ready(function() {
+			$('#summernote').summernote({
+				height : 300,
+				minHeight : null,
+				maxHeight : null,
+				focus : true,
+				callbacks : {
+					onImageUpload : function(files, editor, welEditable) {
+						for (var i = 0; i < files.length; i++) {
+							sendFile(files[i], this);
+						}
+					}
+				}
+			});
+		});
+
+		function sendFile(file, el) {
+			var token = $("meta[name='_csrf']").attr("content");
+		 	var header = $("meta[name='_csrf_header']").attr("content");
+
+         	var form_data = new FormData();
+         	form_data.append('file', file);
+         	form_data.append(header, token);
+
+			$.ajax({
+				data : form_data,
+				type : "POST",
+				url : '/image',
+				cache : false,
+				contentType : false,
+				enctype : 'multipart/form-data',
+				processData : false,
+				success : function(url) {
+					$(el).summernote('insertImage', url, function($image) {
+						$image.css('width', "50%");
+					});
+				}
+			});
+		}
+
+
+
+</script>
+</html>

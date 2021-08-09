@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>리뷰 확인창</title>
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+</head>
+
+<body>
+<div class="upload-container" s>
+    <div class="upload-header">
+        <h2># 리뷰 확인창 🤹</h2>
+        <p th:utext="${article.registerDate}" style="text-align : right;"></p>
+    </div>
+    <div class="upload-content">
+        <h3>Review Title : <a th:utext="${article.title}"></a></h3>
+        <input type="hidden" th:name="proNo" th:value="${proNo}">
+        <div class="single-upload">
+            <div th:utext="${article.content}" class="panel-body" style="text-align : center;"></div>
+            <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
+        </div>
+
+        <div tyle=" display: inline-block;" ;>
+        <div style="text-align:left;">
+            <div th:if="${article.writer.toString().equals(userDetails.username.toString())}">
+                <button sec:authorize="hasRole('ROLE_MEMBER')" class="button"
+                        th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">
+                    수정하기
+                    🤩
+                </button>
+                <button sec:authorize="hasRole('ROLE_MEMBER')" class="button"
+                        th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">
+                    삭제하기
+                    😢
+                </button>
+            </div>
+
+
+            <div th:if="${article.writer.toString().equals('passionatedtour@gmail.com')}" style="text-align:left;">
+                <button sec:authorize="hasRole('ROLE_ADMIN')" class="button" style="margin:0px;"
+                        th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">
+                    수정하기
+                    🤩
+                </button> </div>
+            <div style="text-align:right;">
+
+            <button sec:authorize="hasRole('ROLE_ADMIN')" class="button"
+                    th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">
+                삭제하기
+                😢
+            </button>
+            <button sec:authorize="hasRole('ROLE_ADMIN')"
+                    class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍
+            </button>
+            <button sec:authorize="isAuthenticated()" class="button" th:onclick="|window.location.href='/'|">홈으로
+                가기
+                😎
+            </button>
+                </div>
+        </div>
+
+        </div>
+    </div>
+</body>
+</html>

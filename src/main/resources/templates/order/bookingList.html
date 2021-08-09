@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:type="http://www.w3.org/1999/xhtml">
+<head>
+
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+    <link rel="stylesheet" th:href="@{/css/3dButton.css}"/>
+    <link th:href="@{/css/itemList9.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/file-upload9.css}"/>
+    <meta charset="UTF-8">
+    <title>✈️예약 확인</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+<!--고객 상품 예약 현황-->
+<div class="upload-container">
+    <div class="upload-header">
+        <h1 style="margin-left: 100px;">👨‍✈️️예약현황 👩‍✈️️</h1>
+        <div style="text-align:right;">
+            <a th:href="@{/}" class="button" style="font-size: 0.8rem; text-decoration:none; margin:50px;">홈으로 가기</a>
+        </div><br>
+    </div>
+    <div class="upload-content">
+        <div style="text-align:center; margin: 30px;">
+            <h2>🛫 현재 여행예정 ♪~ ᕕ( ᐛ )ᕗ</h2>
+        </div>
+
+
+        <div class="table-list">
+            <table class="table_box">
+                <!--<table class="table table-striped">-->
+                <thead>
+                <tr>
+                    <th>주문번호</th>
+                    <th>여행 시작일</th>
+                    <th>여행 마지막일</th>
+                    <th>주문일자</th>
+                    <th>금액</th>
+                    <th>수량</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="paid : ${orders}">
+                    <td th:text="${paid.orderId}"></td>
+                    <td th:text="${paid.dateIn}"></td>
+                    <td th:text="${paid.dateOut}"></td>
+                    <td th:text="${paid.orderDate}"></td>
+                    <td th:text="${paid.orderPrice}"></td>
+                    <td th:text="${paid.orderQty}"></td>
+
+                    <td><div class="flip-btn">
+                        <div type:button class="front" >예약 취소하기 🥺</div>
+                        <div type:button class="back" id="cancelPay">예약 취소하기 😭</div>
+                    </div>
+                        <!--<button class="button" id="cancelPay">예약 취소하기</button>--></td>
+                    <td><input type="hidden" name="orderId" th:value="${paid.orderId}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:right;">
+            <h4>여행을 변경하실 경우, 환불을 진행하시고 다시 예약해주세요.</h4>
+        </div>
+
+        <hr>
+
+        <div style="text-align:center; margin: 30px;">
+            <h2>🛬지난 여행 내역 ♪~ ᕕ( ᐛ )ᕗ</h2>
+        </div>
+        <div class="table-list">
+            <table class="table_box">
+                <thead>
+                <tr>
+                    <th>주문번호</th>
+                    <th>여행 시작일</th>
+                    <th>여행 마지막일</th>
+                    <th>주문일자</th>
+                    <th>금액</th>
+                    <th>수량</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="comp : ${ordered}">
+                    <td th:text="${comp.orderId}"></td>
+                    <td th:text="${comp.dateIn}"></td>
+                    <td th:text="${comp.dateOut}"></td>
+                    <td th:text="${comp.orderDate}"></td>
+                    <td th:text="${comp.orderPrice}"></td>
+                    <td th:text="${comp.orderQty}"></td>
+                    <td>[환불 불가]</td>
+                    <td><input type="hidden" name="orderId" th:value="${comp.orderId}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+/*예약 변경 및 취소 관련 알람창 설정*/
+    $(document).ready(function(){
+        $("#cancelPay").click(function(){
+            var orderId = $("input[name='orderId']").val();
+            swal({
+                title: "예약 변경 / 취소",
+                text: "예약을 변경하거나 취소하시겠습니까?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willCancel) => {
+                if(willCancel){
+                    swal("변경 및 취소가 완료되었습니다.",{
+                        icon: "success",
+                    });
+                    location.href="/order/cancel/"+orderId;
+                } else{
+                    swal("Canceled", "예약 변경이 취소되었습니다.","info");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

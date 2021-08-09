@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <link rel="stylesheet" th:href="@{/css/gallerylist.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bestReview3.css}"/>
+    <meta charset="UTF-8">
+    <title>✈️이벤트</title>
+</head>
+<body>
+
+<div class="container gallery-container">
+    <br>
+    <div id="container">
+        <center>
+            <div><img src="../images/event-03.png" width="500px"/></div>
+            <p style="margin:0px;">▶할인 혜택은 투어후 할인된 금액을 돌려 드립니다.◀</p>
+
+            <button class="button-hover" th:onclick="|window.location.href='/board/list'|" style="margin:7px;">여행떠나기🛫</button>
+
+        </center>
+    </div>
+
+    <div class="gallerylist" >
+        <ul style="padding-inline-start: 0px;">
+            <li>
+                <a th:href="@{/board/list?region=Japan}">
+                    <div class="screen">
+                        <div class="top">가깝지만 먼나라 일본</div>
+                        <div class="bottom">도쿄, 나고야, 큐슈, 오사카, 교토, 홋가이도</div>
+                        <img src="../images/JP-01-1.jpg" STYLE="height: 225.81px;">
+                    </div>
+                    <div>
+                        <h3>⚜️ 일본 숙비 10%할인 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/board/list?region=China}">
+                    <div class="screen">
+                        <div class="top">음식이 다양한 중국</div>
+                        <div class="bottom">충칭, 베이징, 홍콩, 대만</div>
+                        <img src="../images/CH-01-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 중국 항공권 15%할인 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/board/list?region=Southeast_Asia">
+                    <div class="screen">
+                        <div class="top">휴양과 체험이 가득한 동남아</div>
+                        <div class="bottom">코타키나발루, 다낭, 캄보디아, 나트랑, 하노이, 발리</div>
+                        <img src="../images/SA-01-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 동남아 1회 마사지 무료이용권  ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

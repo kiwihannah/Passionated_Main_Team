@@ -1,0 +1,120 @@
+/* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
+
+.fullscreen{
+width: 100%;
+}
+
+.jumbotrons {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    /*background-color: #e9ecef;*/
+    border-radius: .3rem;
+}
+.left-side {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+.card-decks-first {
+    text-align: center;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-flow: wrap;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 100%;
+    max-width: 80%;
+}
+.card-decks-second {
+    -webkit-box-flex: 0;
+    flex: 1 0 30.33333%;
+    max-width: 26%;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+}
+.rows{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.ItemFilter{
+    width: 170px;
+    height: 705px;
+    border: 1px solid #d7d7db;
+    margin: 10px;
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px #999;
+    margin-left: -15px;
+}
+	.ItemFilterGroupTitle{
+		padding-top: 4px;
+		font-weight: 700;
+		font-size: 18px;
+	}
+	.ItemFilterGroupList{
+		cursor: pointer;
+		align-items: center;
+		margin: 20px;
+	}
+	.check{
+		height: 16px;
+		width: 16px;
+		margin-right: 5px;
+	}
+.cards{
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #999;
+    border-radius: 0.5rem;
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 18rem;
+    height: 20rem;
+    box-sizing: content-box;
+    cursor: pointer;
+    transition: transform 0.5s;
+	}
+.cards:hover {
+    transform: translateY(10px);
+    box-shadow: 2px 2px 5px #999;
+}
+.proTitle {
+    font-size: 2.75rem;
+    text-decoration:none;
+    color: black;
+}
+.proTitle:hover {
+    color: green;
+}
+cards-footer {
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+    padding: .5rem 1rem;
+    background-color: white;
+    border-top: 1px solid rgba(0,0,0,.125);
+    box-sizing: content-box;
+}
+label {
+    display: inline-flex;
+    width: 120px;
+    font-size: 15px;
+}

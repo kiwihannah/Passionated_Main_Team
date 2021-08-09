@@ -1,0 +1,242 @@
+.adminTitle {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px;
+    color: #2f52a4;
+}
+.form-word {
+    width: 600px;
+    height: 40px;
+    margin: 13px;
+    text-align: left;
+    font-size: 24px;
+    border-style: 1px solid #0f5aba;
+    position: relative;
+    left: 15px;
+}
+.form-word-admin {
+    width: 500px;
+    height: 40px;
+    margin: 10px;
+    text-align: left;
+    font-size: 24px;
+    border-style: 1px solid #0f5aba;
+    position: relative;
+    left: 15px;
+}
+.form-word-content {
+    width: 600px;
+    height: 250px;
+    margin-left: -55px;
+    margin-top: 15px;
+    text-align: left;
+    font-size: 24px;
+    border-style: 1px solid #0f5aba;
+    text-overflow: ellipsis;
+    position: relative;
+    left: 30px;
+}
+.form-group-options {
+    margin: 15px;
+}
+.GPS_N {
+    width: 160px;
+    height: 35px;
+    margin-left: -55px;
+    margin-top: 15px;
+    text-align: left;
+    font-size: 24px;
+    border-style: 1px solid #0f5aba;
+    text-overflow: ellipsis;
+    position: relative;
+    left: 30px;
+}
+.GPS_E {
+    width: 160px;
+    height: 35px;
+    margin-left: -55px;
+    margin-top: 15px;
+    text-align: left;
+    font-size: 24px;
+    border-style: 1px solid #0f5aba;
+    text-overflow: ellipsis;
+    position: relative;
+    left: 100px;
+}
+.title {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+}
+.price {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+}
+.adminId {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+    position: relative;
+    right: 5px;
+}
+.content {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+    position: relative;
+    top: -195px;
+    right: 45px;
+    word-break: break-all;
+    word-wrap: break-word;
+    width: 70px;
+}
+.region-season-theme {
+    margin-left: 140px;
+}
+.region {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+}
+.season {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+    position: relative;
+    left: 20px;
+}
+.theme {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+    position: relative;
+    left: 50px;
+}
+.select_region {
+    font-size: 15px;
+    font-weight: bold;
+    width: 100px;
+    height: 32px;
+    border-color: black;
+    border-radius: 4px;
+    position: relative;
+    left: 10px;
+}
+.select_season {
+    font-size: 15px;
+    font-weight: bold;
+    width: 100px;
+    height: 32px;
+    border-color: black;
+    border-radius: 4px;
+    position: relative;
+    left: 30px;
+}
+.select_theme {
+    font-size: 15px;
+    font-weight: bold;
+    width: 100px;
+    height: 32px;
+    border-color: black;
+    border-radius: 4px;
+    position: relative;
+    left: 65px;
+}
+.N {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+    position: relative;
+    right: 35px;
+}
+.E {
+    font-size: 23px;
+    text-align: center;
+    color: #0f5aba;
+    font-weight: bold;
+    position: relative;
+    left: 40px;
+}
+.buttons {
+    margin-left: 140px;
+    margin-top: 25px;
+}
+/*upload start*/
+button.button-hover-upload{
+    background: #0f5aba;
+    color: #fff;
+    border: none;
+    position: relative;
+    width: 200px;
+    height: 55px;
+    font-size: 27px;
+    /* padding: 0 2em; */
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    margin: 20px;
+}
+button.button-hover-upload:hover{
+  background:#fff;
+  color:#0f5aba;
+}
+button.button-hover-upload:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #0f5aba;
+  transition:400ms ease all;
+}
+button.button-hover-upload:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button.button-hover-upload:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+/*upload end*/
+.btn-delete {
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    background: #CF1F42;
+    font-weight: bold;
+    margin-left: 0px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 150px;
+    border-color: white;
+}
+.btn-delete:hover {
+    background: #A61935;
+}
+.btn-list {
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    background: #2569CF;
+    font-weight: bold;
+    margin-left: 0px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 150px;
+    border-color: white;
+}
+.btn-list:hover {
+    background: #1E55A8;
+}

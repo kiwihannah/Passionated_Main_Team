@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+    <title>🛫️여행 상품</title>
+    <!--css-->
+    <link th:href="@{/css/listStyle2.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
+    <!--js -->
+    <!-- loader js link-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script th:src="@{/js/home.js}"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+
+<th:block layout:fragment="content">
+    <div class="container-fluid">
+        <div class="rows">
+            <!--checkbox 시작-->
+            <div class="left-side">
+                <form th:object="${listSearch}" name="searchFrm">
+                    <div class="ItemFilter">
+                        <div class="ItemFilterGroup">
+                            <div class="ItemFilterGroupTitle">🌏 여행지</div>
+                            <div class="ItemFilterGroupList">
+                                <label>
+                                    <input type="checkbox" name="region" th:value="Korea">&nbsp;국내
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="region" th:value="Japan">&nbsp;일본
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="region" th:value="China">&nbsp;중국
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="region" th:value="Southeast_Asia">&nbsp;동남아시아
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="region" th:value="Europe">&nbsp;유럽
+                                </label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="ItemFilterGroup">
+                            <div class="ItemFilterGroupTitle">🌞계절</div>
+                            <div class="ItemFilterGroupList">
+                                <label>
+                                    <input type="checkbox" name="season" th:value="Spring">&nbsp;봄
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="season" th:value="Summer">&nbsp;여름
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="season" th:value="Autumn">&nbsp;가을
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="season" th:value="Winter">&nbsp;겨울
+                                </label><br>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="ItemFilterGroup">
+                            <div class="ItemFilterGroupTitle">👨‍👩‍👧‍👦테마</div>
+                            <div class="ItemFilterGroupList">
+                                <label>
+                                    <input type="checkbox" name="theme" th:value="Family">&nbsp;가족
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="theme" th:value="Friend">&nbsp;친구
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="theme" th:value="Couple">&nbsp;커플
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" name="theme" th:value="Filial">&nbsp;효도
+                                </label><br>
+                            </div>
+                        </div>
+                        <button type="submit" class="button-hover" id="btnSearch" style="margin: 0px; font-size: 15px;">검색</button>
+                    </div>
+                </form>
+            </div> <!--checkbox 종료-->
+
+            <!--상품 목록(card-deck) 시작-->
+            <div class="card-decks-first">
+                <div class="card-decks-second" th:each = "list : ${items}">
+                    <div class="cards" >
+                        <block th:each=" file : ${MainImage}" th:remove="tag">
+                            <a th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}">
+                                <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
+                                     th:src="@{/upload/{fileName}(fileName = ${file.fileName})}"
+                                     alt="여행 상품 메인 사진"></a>
+                        </block>
+                        <div class="card-body">
+                            <h3>🚙<a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}"
+                                   th:text = "${list.proTitle}"></a></h3>
+                            <p class="card-text" th:text="'￦ '+${list.price}"></p>
+                            <p class="card-text" th:text="${list.proContent}"></p>
+                            @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
+                            @<input type="hidden" name="season" th:text="${list.season}">&nbsp;
+                            @<input type="hidden" name="theme" th:text="${list.theme}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--페이징 처리-->
+    <nav style="text-align: center" class="pagination">
+        <ul class="pagination"
+            th:with="start=${T(Math).floor(items.number/10) * 10 + 1},
+                    last=${start + 9 < items.totalPages ? start + 9 : items.totalPages}">
+
+            <li>
+                <a th:href="@{./list(page=1)}" aria-label="First">
+                    <span aria-hidden="true">👈 처음</span>
+                </a>
+            </li>
+
+            <li th:class="${items.first} ? 'disabled'">
+                <a th:href="${items.first} ? '#' : @{./list(region=${search.region},season=${search.season}
+                ,theme=${search.theme},page=${items.number})}" aria-label="Previous" class="page_pointer">
+                    <span aria-hidden="true">⬅</span>
+                </a>
+            </li>
+
+            <li th:each="page: ${#numbers.sequence(start, last)}"
+                th:class="${page == items.number + 1} ? 'active'">
+                <a th:text="${page}" th:href="@{./list(region=${search.region},season=${search.season}
+                ,theme=${search.theme},page=${page})}" class="page_number">&nbsp;</a>
+            </li>
+
+            <li th:class="${items.last} ? 'disabled'">
+                <a th:href="${items.last} ? '#' : @{./list(region=${search.region},season=${search.season}
+                ,theme=${search.theme},page=${items.number + 2})}"
+                   aria-label="Next" class="page_pointer">
+                    <span aria-hidden="true">➡</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{./list(region=${search.region},season=${search.season}
+                ,theme=${search.theme},page=${items.totalPages})}" aria-label="Last">
+                    <span aria-hidden="true">마지막 👉</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!--페이징 처리 완료-->
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+        $("input:checkbox[name='region']").change(function(){
+            var items = [];
+
+            $("input:checkbox[name='region']:checked").each(function(){
+                items.push($(this).val());
+                console.log(items.length);
+
+                if(items.length > 1){
+                    alert("한개의 옵션만 선택이 가능합니다.");
+                    $("input:checkbox[name='region']").attr("checked", false);
+                    console.log(items);
+                }
+
+            });
+        });
+
+        $("input:checkbox[name='season']").change(function(){
+            var items = [];
+
+            $("input:checkbox[name='season']:checked").each(function(){
+                items.push($(this).val());
+                console.log(items.length);
+
+                if(items.length > 1){
+                    alert("한개의 옵션만 선택이 가능합니다.");
+                    $("input:checkbox[name='season']").attr("checked", false);
+                    console.log(items);
+                }
+
+            });
+        });
+
+        $("input:checkbox[name='theme']").change(function(){
+            var items = [];
+
+            $("input:checkbox[name='theme']:checked").each(function(){
+                items.push($(this).val());
+                console.log(items.length);
+
+                if(items.length > 1){
+                    alert("한개의 옵션만 선택이 가능합니다.");
+                    $("input:checkbox[name='theme']").attr("checked", false);
+                    console.log(items);
+                }
+
+            });
+        });
+
+    });
+    </script>
+</th:block>
+</html>

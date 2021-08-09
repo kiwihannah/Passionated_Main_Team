@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <link rel="stylesheet" th:href="@{/css/gallerylist.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bestReview3.css}"/>
+    <meta charset="UTF-8">
+    <title>✈️이벤트</title>
+</head>
+<body>
+
+<div class="container gallery-container">
+    <br>
+    <div id="container">
+        <center>
+            <div><img src="../images/event-01.jpg" width="500px"/></div>
+            <p style="margin:0px;">▶투어후 학생증을 제출시 숙박비에서 30% 할인된 금액을 돌려 드립니다.◀</p>
+
+            <button class="button-hover" th:onclick="|window.location.href='/board/list?region=Europe'|" style="margin:7px;">유럽여행으로🛫</button>
+
+        </center>
+    </div>
+
+    <div class="gallerylist" >
+        <ul style="padding-inline-start: 0px;">
+            <li>
+                <a href="/board/get?proNo=102&N=49&E=15">
+                    <div class="screen">
+                        <div class="top">내 마음 속의 풍경화,<br>동유럽 3개국</div>
+                        <div class="bottom">체코(프라하, 체스키크롬로프)<br>오스트리아(잘츠부르크, 할슈타트, 비엔나)<br>헝가리(부다페스트)</div>
+                        <img src="../images/EU-01-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 동유럽 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/board/get?proNo=103&N=9.501785&E=56.26392">
+                    <div class="screen">
+                        <div class="top">하얀 밤 푸른 숲, 북유럽</div>
+                        <div class="bottom">덴마크(코펜하겐)<br>노르웨이(베르겐, 오슬로)<br>스웨덴(스톡홀롬)<br>핀란드(헬싱키)</div>
+                        <img src="../images/EU-02-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 북유럽 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/board/get?proNo=104&N=2.3522219&E=48.856614">
+                    <div class="screen">
+                        <div class="top">화려한 서유럽</div>
+                        <div class="bottom">이탈리아 (베네치아, 로마)<br> 스위스(인터라켄)<br> 프랑스(파리)</div>
+                        <img src="../images/EU-03-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 서유럽 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+button.button {
+  border-radius: 100rem;
+  padding: 1rem;
+  font-family: 'Avenir Next';
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  color: $color-black;
+  box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+  border: solid 3px transparent;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #16a085, #e1dc73);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #fff inset;
+  margin:10px;
+ }
+
+button.button:hover {
+  box-shadow: none;
+  color: white;
+}
+
+a.button {
+  border-radius: 100rem;
+  padding: 1rem;
+  font-family: 'Avenir Next';
+  font-size: 1.5rem;
+  padding: .5rem 2rem;
+  color: $color-black;
+  box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+  border: solid 3px transparent;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #16a085, #e1dc73);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #fff inset;
+  margin:10px;
+ }
+
+button.sucker {
+  border-radius: 100rem;
+  padding: 1rem;
+  font-family: 'Avenir Next';
+  font-size: 1.5rem;
+  padding: .5rem 2rem;
+  color: $color-black;
+  box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+  border: solid 3px transparent;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #16a085, #e1dc73);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #fff inset;
+  margin:10px;
+}
+
+button.sucker:hover {
+  box-shadow: none;
+  color: white;
+}
+
+a.button:hover {
+  box-shadow: none;
+  color: white;
+}
+
+a.button {
+  border-radius: 100rem;
+  padding: 1rem;
+  font-family: 'Avenir Next';
+  font-size: 1.5rem;
+  padding: .5rem 2rem;
+  color: $color-black;
+  box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+  border: solid 3px transparent;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #16a085, #e1dc73);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #fff inset;
+  margin:10px;
+
+ }
+
+a.button:hover {
+  box-shadow: none;
+  color: white;
+}
+
+.wrapper{
+  display: inline-flex;
+  background: #fff;
+  height: 36px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 12px 7px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+.wrapper .option{
+  background: #fff;
+  height:29px;
+  width:300px;
+/*  height: 100%;
+  width: 100%;*/
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #838BB2;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2{
+  border-color: #838BB2;
+  background: #838BB2;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot{
+  background: #fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 20px;
+  color: #808080;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span{
+  color: #fff;
+}
+
+.text-center{
+  margin: 0 auto;
+  width:100%;
+}
+

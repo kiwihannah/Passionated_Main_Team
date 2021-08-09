@@ -1,0 +1,210 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+.adminTitle {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px;
+    color: #2f52a4;
+}
+.listButtons {
+    text-align: center;
+    /* background: #002366; */
+    width: 180px;
+    height: 240px;
+    margin-left: -80px;
+    margin-top: -15px;
+    float: left;
+    position: fixed;
+}
+.table-list {
+   float: right;
+   margin-left: 100px;
+}
+.table_box{
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    /*글자 수 제한해 화면에 표시*/
+    width: 1125px;
+    table-layout:fixed
+}
+.table_box tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+.table_box td {
+    box-sizing: border-box;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space: nowrap;
+    font-size: 20px;
+    text-align: center;
+     height:60px;
+}
+.th-list {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: black;
+    background: #A3B6C5;
+    margin: 20px 10px;
+    text-align: center;
+    font-size: 25px;
+}
+/*upload start*/
+.button-hover-upload{
+    background: #0f5aba;
+    color: #fff;
+    border: none;
+    position: relative;
+    width: 200px;
+    height: 55px;
+    font-size: 27px;
+    /* padding: 0 2em; */
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    margin: 20px;
+}
+.button-hover-upload:hover{
+  background:#fff;
+  color:#0f5aba;
+}
+.button-hover-upload:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #0f5aba;
+  transition:400ms ease all;
+}
+.button-hover-upload:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button-hover-upload:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+/*upload end*/
+/*user start*/
+.button-hover-user{
+    background: #ffcc00;
+    color: #fff;
+    border: none;
+    position: relative;
+    width: 200px;
+    height: 55px;
+    font-size: 27px;
+    /* padding: 0 2em; */
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    margin: 20px;
+}
+.button-hover-user:hover{
+  background:#fff;
+  color:#ffcc00;
+}
+.button-hover-user:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #ffcc00;
+  transition:400ms ease all;
+}
+.button-hover-user:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button-hover-user:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+/*user end*/
+/*home start*/
+.button-hover-home{
+    background: #2f52a4;
+    color: #fff;
+    border: none;
+    position: relative;
+    width: 200px;
+    height: 55px;
+    font-size: 27px;
+    /* padding: 0 2em; */
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    margin: 20px;
+}
+.button-hover-home:hover{
+  background:#fff;
+  color:#2f52a4;
+}
+.button-hover-home:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #2f52a4;
+  transition:400ms ease all;
+}
+.button-hover-home:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button-hover-home:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+/*home end*/
+/*paging css*/
+.pagination {
+    display: inline-block;
+    width: 600px;
+    position: relative;
+    left: 35px;
+}
+
+.pagination a {
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.page_number {
+    background-color: #2f52a4;
+    color: white;
+}
+.page_number:hover {
+    background-color: gray;
+    color: black;
+}
+.page_pointer {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.page_pointer:hover {
+    background-color: gray;
+}

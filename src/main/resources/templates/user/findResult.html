@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link th:href="@{/css/button-hover.css}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>✈️아이디(이메일) 찾기 결과</title>
+  <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+  <link rel="stylesheet" th:href="@{/css/button.css}"/>
+</head>
+<body>
+<div class="upload-container">
+  <div class="upload-header">
+    <h2>아이디(이메일) 찾기 결과 🤹</h2>
+
+  </div>
+  <div class="upload-content">
+    <div><br>
+      <h3 style=>🔸 이름: <strong th:name="name" th:text="${member.name}"></strong> </h3>
+      <h3 style=>🔸 아이디: <strong th:name="username" th:text="${member.username}"></strong></h3><br><br>
+      <a class="button-hover1"
+         style="font-size:15px; margin-left:350px; text-decoration:none; "  th:href="@{/findInfo}">비밀번호 찾기</a>
+      <a class="button-hover"
+         style="font-size:15px; margin-left:10px; text-decoration:none; " th:href="@{/user/login}">로그인 창으로 돌아가기</a>
+
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

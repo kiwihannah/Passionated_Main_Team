@@ -1,0 +1,29 @@
+.like__btn {
+  padding: 10px 15px;
+  background: #0080ff;
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 5px;
+  color: #e8efff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 맨위로가기 버튼 */
+a.jcm-top {
+    position: fixed;
+    right: 30px;
+    bottom: 50px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    width: 70px;
+    height: 100px;
+    font-size: 100px;
+    background-color:#ffba00; opacity:0.5; filter:alpha(opacity=50);
+    z-index: 999;
+    display: none;
+
+}a.jcm-top:hover{background-color:#ffffff}
+

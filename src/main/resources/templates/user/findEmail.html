@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>✈️아이디( 이메일 ) 찾기</title>
+</head>
+<body class="text-center">
+
+<form class="form-signin" method="post" id="findEmail" th:action="@{/user/findId}">
+
+    <a th:href="@{/}"><img class="mb-6" th:src="@{/images/logo.png}" width="500" alt="main_logo_img"></a>
+    <div class="login-form">
+        <br>
+        <h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1>
+        <h6>회원정보에 등록한 전화번호와 입력한 전화번호가 같아야,<br>
+            아이디를 찾을 수 있습니다.</h6>
+        <br>
+
+        <input type="text" th:name="name" placeholder="이름">
+        <input type="text"  th:name="phoneNo" placeholder="010-1234-5678">
+
+        <input class="submit-btn " onclick="successFinding()" type="button" value="아이디 찾기">
+        <a type="button" class="btn btn-secondary btn-lg btn-block"
+           style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
+    </div>
+
+</form>
+<script>
+/*아이디 찾기 요청*/
+function successFinding(){
+    swal({
+        title: "Info!",
+        text: "아이디가 확인됐습니다.",
+        icon: "info",
+    })
+    .then(() => {
+        document.getElementById('findEmail').submit();
+    })
+}
+</script>
+</body>
+</html>

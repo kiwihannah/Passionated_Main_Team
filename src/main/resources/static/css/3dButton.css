@@ -1,0 +1,26 @@
+.flip-btn{
+  width:200px;
+  height:50px;
+  color: #ffffff;
+  text-align: center;
+  line-height:50px;
+  transform-style: preserve-3d;
+  transition:.5s;
+  cursor:pointer;
+}
+
+.flip-btn:hover{
+  transform: rotateX(-90deg);
+}
+
+.front{
+  background-color:#1D6A96;
+  height:50px;
+  transform: translateZ(25px);
+}
+
+.back{
+  background-color:#283B42;
+  height:50px;
+  transform: rotateX(90deg) translateZ(75px);
+}

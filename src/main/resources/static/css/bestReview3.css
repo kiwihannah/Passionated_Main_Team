@@ -1,0 +1,18 @@
+body {
+    /*background-image: linear-gradient(to top, #ecedee 0%, #eceeef 75%, #e7e8e9 100%);*/
+    background-color: #16a085;
+    font: normal 16px sans-serif;
+
+}
+
+.container.gallery-container {
+    margin-left:150px;
+    margin-right:150px;
+    margin-top:15px;
+    background-color: #fff;
+    color: #35373a;
+    height: 690px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+    <meta charset="UTF-8"/>
+    <title>✈️결제전 예약 확인</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <!--script for i'mport-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+
+
+<div class="upload-container">
+    <input type="hidden" name='userName' th:value="${member.username}">
+    <input type="hidden" name='name' th:value="${member.name}">
+    <input type="hidden" name='address' th:value="${member.address}">
+    <div class="upload-header" style="text-align:center;">
+        <th:block sec:authorize="isAuthenticated()">
+            <h2>🎊<span sec:authentication="principal.username"></span> 님, 여행 내용을 확인해보세요 🎊</h2>
+        </th:block>
+    </div>
+
+    <div class="upload-content">
+        <div class="form-group row">
+            <input type="hidden" th:value="${product.proTitle}" class="proTitle"/>
+            <h3 class="mt-5">・주문 번호: <strong name="orderId" th:text="${order.orderId}"></strong></h3>
+            <input type="hidden" name='orderId' th:value="${order.orderId}">
+            <h3 class="mt-5">・결제 금액: <strong th:name="orderPrice" th:text="${order.orderPrice}" class="orderPrice"></strong>원</h3>
+            <h3 class="mt-5">・인원 수: <strong th:name="orderQty" th:text="${order.orderQty}" class="orderQty"></strong>명</h3>
+            <h3 class="mt-5">・총 금액: <strong th:name="totalPrice" th:text="${totalPrice}"
+                                            th:value="${totalPrice}" class="totalPrice"></strong>원</h3>
+            <input type="hidden" name='totalPrice' th:value="${totalPrice}">
+            <hr/>
+
+            <h3 class="mt-5">🛫 여행 시작일: <strong th:name="dateIn"
+                                                th:text="${order.dateIn}"></strong></h3>
+            <h3 class="mt-5">🛬 여행 마지막일: <strong th:name="dateOut"
+                                                 th:text="${order.dateOut}"></strong></h3>
+        </div>
+        <div style="text-align:right;">
+            <a class="button" type="button" id="check_module" style="font-size: 13px; margin:0px; text-decoration:none;">결제하기 💵</a>
+            <a class="button" id="cancelTour" style="font-size: 13px; text-decoration:none;">여행 취소하기 😉</a>
+        </div>
+    </div>
+
+</div>
+<script>
+/* 아임포트 - 결제 관련 API */
+$(document).ready(function(){
+
+    $("#check_module").click(function(){
+        var IMP = window.IMP;
+        var orderId = $("input[name='orderId']").val();
+
+        IMP.init("imp92101402");
+
+        IMP.request_pay({
+            pg: "html5_inicis",
+            pay_method: "card",
+            merchant_uid: 'Order_'+new Date().getTime(),
+            amount: $("input[name='totalPrice']").val(),
+            name: $(".proTitle").val(),
+            buyer_email: $("input[name='userName']").val(),
+            buyer_name: $("input[name='name']").val(),
+            buyer_addr: $("input[name='address']").val(),
+        }, function(rsp){
+            console.log(rsp);
+            if(rsp.success){
+                var msg="결제가 완료되었습니다.";
+                location.href="/order/confirmation/"+orderId;
+
+            } else{
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용: '+rsp.error_msg;
+            }
+            alert(msg);
+        });
+    });
+
+    /*여행 취소*/
+    $("#cancelTour").click(function(){
+        var orderId = $("input[name='orderId']").val();
+        swal({
+            title:"Warning!",
+            text: "여행을 취소하시겠습니까?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel)=>{
+            if(willCancel){
+                swal("취소가 완료되었습니다.",{
+                    icon: 'success',
+                });
+                location.href="/order/cancel/"+orderId;
+            } else{
+                swal("변경이 취소되었습니다.");
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

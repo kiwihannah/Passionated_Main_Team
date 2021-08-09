@@ -1,0 +1,93 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>✈️비밀번호 찾기</title>
+
+
+</head>
+
+<body class="text-center">
+<form class="form-signin" id="sendMail" method="post" th:action="@{/mail}">
+    <a th:href="@{/}"><img class="mb-6" th:src="@{/images/logo.png}" width="500" alt="main_logo_img"></a>
+
+    <div class="login-form">
+        <br>
+        <h1 class="h3 mb-3 font-weight-normal">비밀번호 찾기</h1>
+        <h6>회원정보에 등록한 이메일과 입력한 이메일이 같아야,<br>
+            비밀번호를 찾을 수 있습니다.</h6>
+        <br>
+        <label for="username" class="sr-only">이메일</label>
+        <input type="email" id="username" name="username" class="form-control"
+               placeholder="이메일" required autofocus/>
+        <label for="name" class="sr-only">이름</label>
+        <input type="text" id="name" name="name" class="form-control"
+               placeholder="이름" required/>
+        <input class="submit-btn " onclick="check_info()" type="button" id="checkEmail" value="비밀번호 찾기"/>
+        <a type="button" class="btn btn-secondary btn-lg btn-block"
+           style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
+    </div>
+</form>
+</body>
+
+<script>
+/* 비밀번호 찾기 관련 알람 창 설정*/
+    function check_info() {
+    var username = $("input[name='username']").val();
+    var name = $("input[name='name']").val();
+
+       $.ajax({
+            async: true,
+            type: "GET",
+            url: "/check/findPw",
+            dataType: "json",
+            data: {
+                "username": username,
+                "name": name
+            },
+            success: function (data) {
+                if(data.data == true){
+                    swal({
+                            title: "Success!",
+                            text: "임시 비밀번호가 이메일로 전송되었습니다.",
+                            icon: "success",
+                            timer: 2000,
+                            buttons: false
+                    })
+                    .then (()=>{
+                        document.getElementById('sendMail').submit();
+                    })
+                } else {
+                    swal({
+                            title: "Error!",
+                            text: "정보가 일치하지 않습니다. 다시 입력해주세요.",
+                            icon: "error",
+                            timer: 2000,
+                            buttons: false
+                    })
+                    .then(()=>{
+                        document.getElementById('sendMail').submit();
+                    });
+                }
+            }
+       })
+    }
+
+</script>
+
+</html>

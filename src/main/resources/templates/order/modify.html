@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"/>
+
+<link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+<link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+<script th:src="@{https://code.jquery.com/jquery-3.2.1.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap-datepicker.js}" type="text/javascript"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+$(document).ready(function () {
+    $('#dateIn').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn : true,
+        autoclose: true,
+        multidate : true,
+        multidateSeparator :",",
+        todayHighlight: true
+    });
+    $('#dateOut').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn : true,
+        autoclose: true,
+        multidate : true,
+        multidateSeparator :",",
+        todayHighlight: true
+    });
+});
+
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>✈️예약수정</title>
+</head>
+
+<body>
+<div class="upload-container">
+    <div class="upload-header">
+        <h2>예약수정하기 🧚‍♂️</h2>
+    </div>
+    <div class="upload-content">
+
+        <form method="post" th:object="${order}" th:action="@{/order/modify/{orderId}(orderId= ${order.orderId})}">
+            <div class="form-group row">
+                <div class="col-md-6 mt-5">
+                    <label th:name="OrderPrice">패키지 가격(원)</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" readonly th:name="OrderPrice" th:value="*{OrderPrice}" />
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <label th:name="OrderQty">인원수</label>
+                    <div class="input-group date">
+                        <input type="number" class="form-control" th:name="OrderQty" th:value="*{OrderQty}" />
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="form-group row">
+                <div class="col-md-6 mt-5">
+                    <label for="dateIn"></label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="dateIn"
+                               th:name="dateIn" th:value="${#dates.format(dateIn,'yyyy-MM-dd')}" th:placeholder="*{dateIn}"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <label for="dateOut"></label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="dateOut"
+                               th:name="dateOut" th:value="${#dates.format(dateOut, 'yyyy-MM-dd')}" th:placeholder="*{dateOut}"/>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:right;" >
+                <a th:href="@{/}" class="button-hover" style="font-size: 0.8rem; text-decoration:none;">홈으로 가기</a>
+                <button class="button-hover" type="submit" style="font-size: 0.8rem;">수정완료</button>
+                <a th:href="@{/order/cancel/{orderId}(orderId= ${order.orderId})}"
+                   class="button-hover" style="font-size: 0.8rem; text-decoration:none;" >여행 취소하기</a>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

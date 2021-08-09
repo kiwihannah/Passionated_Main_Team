@@ -1,0 +1,77 @@
+  /* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
+/* 사이드바 스타일 */
+.sidenav {
+    height:100%;
+    width: 0;
+    position: fixed;
+    z-index:1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,154,200);
+    overflow-x: hidden;
+    transition:0.5s ease-in-out;
+    padding-top: 60px;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.2s ease-in-out;
+}
+.sidenav a:hover, .offcanvas a:focus {
+    color: #000;
+}
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+.openmenu:hover {
+    color:rgb(0,154,200);
+    transition:0.5s ease-in-out;
+}
+.openmenu {
+    font-size: 25px;
+    cursor:pointer;
+    transition:0.5s ease-in-out;
+}
+.openmenu > i {
+    font-size: 30px;
+}
+/* 미디어쿼리 적용 */
+@media screen and (max-height:1300px) {
+    .sidenav {
+        padding-top:15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+.ItemFilterGroupTitle {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+.ItemFilterGroupList {
+    text-align: center;
+    margin: 15px;
+}
+.btnSearch {
+    background-color: #16a085;
+    color: #f0f0f0;
+    margin-left: 90px;
+}
+.cardItems {
+    margin: 10px;
+    width: 200px;
+    height: 100px;
+}
+.card-deck-case {
+    border-style: 1px solid black;
+}

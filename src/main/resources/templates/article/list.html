@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+    <title>리뷰 목록</title>
+    <!--css-->
+    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
+    <link th:href="@{/css/itemList.css}" rel="stylesheet">
+
+    <!--js-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+<th:block th:fragment="reviewList"
+          layout:fragment="content">
+
+    <div class="container">
+        <div style="text-align:left;" sec:authrozie="isAuthenticated()">
+        <button class="button-hover" sec:authorize="hasRole('MEMBER')"
+                th:onclick="|window.location.href='@{/form(proNo=${productInfo.proNo}, N=${productInfo.N}, E=${productInfo.E})}'|">후기쓰기😇</button>
+        </div>
+
+        <div class="table-list">
+            <table class="table_box">
+                <thead>
+                <tr>
+                    <th class="th-list">No</th>
+                    <th class="th-list">제목</th>
+                    <th class="th-list">작성자</th>
+                    <th class="th-list">작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article : ${articleList}">
+                    <td th:text="${article.id}"></td>
+                    <td><a th:href="@{/article/detail(proNo = ${productInfo.proNo}, id = ${article.id})}" th:text="${article.title}"
+                           class="articleTitle"></a></td>
+                    <td th:text="${article.writer}"></td>
+                    <td th:text="${article.registerDate}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--페이징 시작-->
+        <nav style="text-align: center">
+
+            <ul class="pagination"
+                th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},
+              last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
+
+                <li>
+                    <a th:href="@{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=1)}" aria-label="First">
+                        <span aria-hidden="true">👈 처음</span>
+                    </a>
+                </li>
+
+                <li th:class="${articleList.first} ? 'disabled'">
+                    <a th:href="${articleList.first} ? '#' : @{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${articleList.number})}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">⬅</span>
+                    </a>
+                </li>
+
+                <li th:each="page: ${#numbers.sequence(start, last)}"
+                    th:class="${page == articleList.number + 1} ? 'active'">
+                    <a th:text="${page}" th:href="@{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${page})}">&nbsp;</a>
+                </li>
+
+                <li th:class="${articleList.last} ? 'disabled'">
+                    <a th:href="${articleList.last} ? '#' : @{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${articleList.number + 2})}"
+                       aria-label="Next">
+                        <span aria-hidden="true">➡</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${articleList.totalPages})}" aria-label="Last">
+                        <span aria-hidden="true">마지막 👉</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!--페이징 처리 완료-->
+
+    </div>
+
+    <script type="text/javascript">
+   function clearSearch() {
+      window.location = "[[@{article/list}]]";
+   }
+</script>
+</th:block>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Footer -->
+<th:block th:fragment="footerFragment">
+    <footer class="footer">
+        <ul class="footer-left">
+            <img th:src="@{/images/logo.png}" alt="main_logo_img">
+        </ul>
+        <ul class="footer-right">
+            <li class="features">
+                <h2>너나들이 여행</h2>
+                <ul class="box">
+                    <li class="li_box"><i class="far fa-map icons">서울시 관악구 신림동</i></li>
+                    <li class="li_box"><i class="far fa-envelope icons">neonadeul-i@gmail.com</i></li>
+                    <li class="li_box"><i class="fas fa-phone icons">1-800-800-2299(Support)</i></li>
+                </ul>
+            </li>
+            <li class="features">
+                <div class="socials">
+                    <h2>너나들이 정보</h2>
+                    <ul class="box">
+                        <li>경영이념 : 열정을 품은 여행</li>
+                        <li>경영철학 : 지속적인 공존여행</li>
+                        <li>경영윤리 : 투명경영과 고객만족경영</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="features">
+                <h2 class="More">협력사 및 후원사</h2>
+                <ul class="box">
+                    <li>김씨네 컴퍼니</li>
+                    <li>지형펜션</li>
+                    <li>정 코퍼레이션</li>
+                    <li>버들류 민박</li>
+                    <li>인디아나 존스 투어</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="footer-buttom">
+            <p>All Right reserved neonadeul-i &copy; 너나들이 </p>
+        </div>
+    </footer>
+</th:block>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>베스트리뷰 확인창</title>
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="upload-container">
+    <div class="upload-header">
+        <h2> #BEST Review👍</h2>
+        <p th:utext="${bestReview.registerDate}" style="text-align : right;"> </p>
+
+    </div>
+    <div class="upload-content">
+        <br>
+        <h3>Review Title : <a th:utext="${bestReview.title}" ></a></h3>
+        <br>
+        <div class="single-upload">
+            <div th:utext="${bestReview.content}" class="panel-body" style="text-align : center;"></div>
+        </div>
+        <div style="text-align:center;">
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="button"
+                th:onclick="|window.location.href='/bestReview/delete/${bestReview.id}'|">
+            삭제하기 😢</button>
+            &emsp;
+        <button class="button"
+                th:onclick="|window.location.href='/bestReview/list'|">
+            목록으로 😎</button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

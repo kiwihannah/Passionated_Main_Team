@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+    <title>회원관리</title>
+    <!--css-->
+    <link th:href="@{/css/listStyle2.css}" rel="stylesheet">
+    <link th:href="@{/css/itemList.css}" rel="stylesheet">
+    <link th:href="@{/css/itemList2.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <!--js -->
+</head>
+
+<th:block layout:fragment="content">
+    <body>
+    <div class="adminTitle">👨‍✈️ 회원 리스트 👩‍✈</div>
+    <div class="container">
+        <div class="listButtons">
+            <button class="button-hover-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
+            <button class="button-hover-user" th:onclick="|window.location.href='/admin/list'|">상품 리스트</button>
+            <button class="button-hover-home" th:onclick="|window.location.href='/'|">홈으로</button>
+        </div>
+
+        <br/>
+        <div class="container" style=" margin-left: 150px; width: 1250px;">
+            <div>
+                <h3 style="text-align: right; padding-bottom: 25px;">
+                    🛫 현재 여행예정 수량: <span th:text="${orders}" />
+                    🛬 지난 여행 내역 수량: <span th:text="${ordered}" /></h3>
+            </div>
+            <hr/>
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>성별</th>
+                        <th>주소</th>
+                        <th>생일</th>
+                        <th>연락처</th>
+                        <th>가입일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="member : ${members}">
+                        <td th:text="${member.id}"></td>
+                        <td><a th:href="@{/admin/modifyUserName/{username}(username = ${member.username})}"
+                               th:text="${member.username}"></a></td>
+                        <td th:text="${member.name}"></td>
+                        <td th:text="${member.gender}"></td>
+                        <td th:text="${member.address}"></td>
+                        <td th:text="${member.birthdate}"></td>
+                        <td th:text="${member.phoneNo}"></td>
+                        <td th:text="${member.regDate}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div> <!-- /container -->
+            <nav style="text-align: center" class="pagination">
+                <ul class="pagination"
+                    th:with="start=${T(Math).floor(members.number/10) * 10 + 1},
+                    last=${start + 9 < members.totalPages ? start + 9 : members.totalPages}">
+
+                    <li>
+                        <a th:href="@{./memberList(page=1)}" aria-label="First">
+                            <span aria-hidden="true">👈 처음</span>
+                        </a>
+                    </li>
+
+                    <li th:class="${members.first} ? 'disabled'">
+                        <a th:href="${members.first} ? '#' : @{./memberList(page=${members.number})}"
+                           aria-label="Previous" class="page_pointer">
+                            <span aria-hidden="true">⬅</span>
+                        </a>
+                    </li>
+
+                    <li th:each="page: ${#numbers.sequence(start, last)}"
+                        th:class="${page == members.number + 1} ? 'active'">
+                        <a th:text="${page}" th:href="@{./memberList(page=${page})}" class="page_number">&nbsp;</a>
+                    </li>
+
+                    <li th:class="${members.last} ? 'disabled'">
+                        <a th:href="${members.last} ? '#' : @{./memberList(page=${members.number + 2})}"
+                           aria-label="Next" class="page_pointer">
+                            <span aria-hidden="true">➡</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{./memberList(page=${members.totalPages})}" aria-label="Last">
+                            <span aria-hidden="true">마지막 👉</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div> <!-- /container -->
+    </body>
+</th:block>
+</html>

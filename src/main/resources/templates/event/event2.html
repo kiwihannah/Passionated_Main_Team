@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <link rel="stylesheet" th:href="@{/css/gallerylist.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bestReview3.css}"/>
+    <meta charset="UTF-8">
+    <title>✈️이벤트</title>
+</head>
+<body>
+
+<div class="container gallery-container">
+    <br>
+    <div id="container">
+        <center>
+            <div><img src="../images/event-02.png" width="500px"/></div>
+            <p style="margin:0px;">▶투어후 수험표 제출시 투어비용 50% 할인된 금액을 돌려 드립니다.◀</p>
+
+            <button class="button-hover" th:onclick="|window.location.href='/board/list?region=Europe'|" style="margin:7px;">유럽여행으로🛫</button>
+
+        </center>
+    </div>
+
+    <div class="gallerylist" >
+        <ul style="padding-inline-start: 0px;">
+            <li>
+                <a href="/board/get?proNo=106&N=-3.74922&E=40.463667">
+                    <div class="screen">
+                        <div class="top">희희낙락 스페인</div>
+                        <div class="bottom">마드리드, 똘레도, 세비야, 론다, 그라나다,<br> 바르셀로나, 몬세라트</div>
+                        <img src="../images/EU-04-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 스페인 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/board/get?proNo=107&N=12.4963655&E=41.9027835.">
+                    <div class="screen">
+                        <div class="top">이탈리아,<br>여행에 인문학을 더하다</div>
+                        <div class="bottom">로마, 포지타노, 피렌체, 토스카나, 베네치아</div>
+                        <img src="../images/EU-05-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 이탈리아 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/board/get?proNo=109&N=40&E=54">
+                    <div class="screen">
+                        <div class="top">꿈 속에 그리던, 발칸</div>
+                        <div class="bottom">크로아티아(자그레브, 라스토케, 플리트비체, 자다르,<br> 스플리트, 두브로브니크)<br> 슬로베니아(블레드, 피란, 류블라냐)</div>
+                        <img src="../images/EU-07-1.jpg">
+                    </div>
+                    <div>
+                        <h3>⚜️ 발칸 ⚜️</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

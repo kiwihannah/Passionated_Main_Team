@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="reviewList">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>베스트 리뷰</title>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+ <!--   <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>-->
+    <link rel="stylesheet" th:href="@{/css/bestReview2.css}"/>
+
+</head>
+<body>
+
+    <h1 class="bestReviewTitle"> 너나들이 BEST REVIEW </h1>
+    <button class="button-hover1-best" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+    <h4 class="bestReviewPreview4">신뢰와 즐거움으로 함께하는 너나들이 여행사</h4>
+    <h3 class="bestReviewPreview3">고객의 웃음과 즐거운 마음이 너나들이와 함께 담겨있는 곳 너나들이 여행사</h3>
+    <div class="tz-gallery-best">
+        <div class="card-decks-first">
+            <div class="card-container" th:each="bestReview : ${bestReviews}">
+                <div class="card-box">
+                    <h3><a th:text="${bestReview.writer}" class="icons"></a></h3>
+                    <a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
+                                          th:utext="${bestReview.content}"></a>
+                    </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+
+    <script type="text/javascript">
+    var giveColor = document.getElementsByClassName('card-box');
+    var color = ['#578fff', '#8c9ffd', '#ff7ea2', '#ffbf43', '#74dde3', 'red', '#BEC8D7', '#E2D2D2',
+                   '#E3E2B4', '#A2B59F', '#E8E7D2', '#D2D5B8', '#BDC2BB', '#C9BA9B', '#D18063'];
+    function randomColorOn(giveColor,color){
+	var arr2 = [];
+	for(var i = color.length; i > 0; i--) {
+		 const num = Math.floor(Math.random() * color.length);
+		 arr2.push(color[num]);
+		 color.splice(num, 1);
+	}
+
+	for(var j = 0; j < giveColor.length; j++) {
+		giveColor[j].style.backgroundColor = arr2[j];
+		}
+	}
+	randomColorOn(giveColor,color);
+
+</script>
+
+</body>
+</html>

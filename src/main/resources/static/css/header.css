@@ -1,0 +1,95 @@
+/* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
+body {
+	margin: 0; /*웹 페이지를 상단 바가 다 채움*/
+	font-family: 'Roboto', sans-serif; /*body 내 모든 포튼 동일 적용*/
+	text-align: center;
+}
+.navbar {
+	display: flex; /*한 줄에 나란히*/
+	justify-content: center; /*스페이스를 사이사이에 넣음*/
+	align-items: center; /*중앙 배치*/
+	background-color: #16a085;
+	padding: 10px;
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+}
+li {
+	text-decoration: none;/*.없앰*/
+}
+.icons {
+    font-style: normal;
+    font-weight: bold;
+}
+.main_logo_img{
+	width: 220px;
+	height: 75px;
+	padding: 0.3rem 0.35rem;
+}
+.navbar_logo {
+	padding: 0px;
+	width: 93px;
+    margin-right: 217px;
+	list-style:none;
+}
+.navbar_logo li {
+	width: 140px;
+    height: 24px;
+}
+.navbar_logo li a{
+    color: white;
+    text-decoration: none;/*.없앰*/
+    font-size: 24px;
+}
+.navbar_logo li a:hover{
+    color:  #0C4F3C;
+}
+.navbar_menu {
+	display: flex; /*한 줄에 하나씩 나옴*/
+	list-style:none; /*홈이 같지 않음*/
+	padding-left: 0; /*이렇게 지정해서 중앙에 배치*/
+	font-size: 18px;
+}
+.navbar_menu li {
+    width: 140px;
+    height: 24px;
+}
+.navbar_menu li a {
+    color: white;
+    text-decoration: none;/*.없앰*/
+	padding: 10px; /*메뉴안 내용들의 간격 조정*/
+    font-size: 24px;
+}
+.navbar_menu li a:hover {
+    color:  #0C4F3C;
+}
+.navbar_icons {
+	color: white;
+	font-size: 25px;
+	display: flex;
+	list-style:none;
+	padding-left: 0rem; /*중앙 배치*/
+	margin-left: 50px;
+}
+.navbar_icons li {
+    width: 140px;
+    height: 24px;
+}
+.navbar_icons li a {
+    color: #ffba00;
+	font-size: 25px;
+	padding: 0px;
+    font-size: 24px;
+}
+.navbar_icons li a:hover {
+    color:#C3e2dd;
+}
+.navbar_toogleBtn { /*위치 조정*/
+	display: none; /*큰 크기때는 안 보이게 함*/
+	position: absolute; /*제일 위에 배치*/
+	right: 32px; /*오른쪽에서 32px 떨어진 곳에 배치*/
+	font-size: 24px;
+	color: white;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>✈️리뷰 확인창</title>
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+</head>
+
+<body>
+<div class="upload-container">
+    <div class="upload-header">
+        <h2>개인 리뷰 확인창 🤹</h2>
+        <p th:text="${article.registerDate}" style="text-align : right;"></p>
+    </div>
+    <div class="upload-content">
+        <h3>Review Title : <a th:text="${article.title}"></a></h3>
+        <input type="hidden" th:name="proNo" th:value="${proNo}">
+        <div class="single-upload">
+            <div th:utext="${article.content}" class="panel-body" style="text-align : center;"></div>
+            <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
+        </div>
+        <div style="text-align:center;">
+            <button class="button"
+                    th:onclick="|window.location.href='@{/myReview/update/{id}(id = ${article.id})}'|">
+                수정하기
+                🤩
+            </button>
+            <button class="button"
+                    th:onclick="|window.location.href='@{/myReview/delete/{id}(id = ${article.id})}'|">
+                삭제하기
+                😢
+            </button>
+            <button class="button"
+                    th:onclick="|window.location.href='@{/}'|">
+                홈으로 돌아가기😎
+
+            </button>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+.table-list {
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+.table_box{
+    border-collapse: collapse;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin:auto;
+    /*글자 수 제한해 화면에 표시*/
+    /*height: 300px;*/
+    width: 90%;
+    table-layout:fixed
+}
+.table_box tr:nth-child(even){
+    background-color: #E1F1E7;
+}
+.table_box tr:nth-child(even){
+    background-color: #EDEEF0;/*#E1F1E7;*/
+}
+.table_box th {
+ background: #85B8CB
+}
+.table_box td {
+    box-sizing: border-box;
+    font-size: 20px;
+    text-align: center;
+    height:60px;
+}
+.th-list {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #16a085;
+    margin: 20px 10px;
+    text-align: center;
+    font-size: 20px;
+}

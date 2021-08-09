@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+    <title>get</title>
+    <!--css-->
+    <link th:href="@{/css/itemList.css}" rel="stylesheet">
+    <link th:href="@{/css/listStyle2.css}" rel="stylesheet">
+    <link th:href="@{/css/button-like.css}" rel="stylesheet">
+    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
+    <!-- icon link -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
+
+    <!--js -->
+    <!-- include libraries(jQuery, bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- loader js link-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script
+            src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+
+    <style>
+      #map {
+        width: 800px;
+        height: 300px;
+      }
+    </style>
+
+</head>
+
+<!--<body id="pageTop">-->
+<th:block layout:fragment="content">
+    <div class="container row" style="float: none; margin:0 auto;" >
+
+
+        <div class="container" style="text-align : right;">
+            <br>
+
+            <div style="text-align:center;">
+                <div style="margin-bottom:50px;">
+                    <h1>⚜️ <strong th:text="${productInfo.proTitle}"/> ⚜️</h1>
+                </div>
+
+                <div>
+                    <input type="hidden" name="proNo" th:value="${productInfo.proNo}">
+                    <input type="hidden" name="N" th:value="${productInfo.N}">
+                    <input type="hidden" name="E" th:value="${productInfo.E}">
+                </div>
+
+                <div class="productImg">
+                    <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
+                         alt="상품 메인 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+                </div>
+                <div class="bookingProduct">
+                    <br>
+                    <h3>👛상품가격 : <strong th:text="${productInfo.price}"/> 원</h3>
+                    <div>
+                        <button class="button-hover"
+                                th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
+                        </button>
+                        <button class="button-hover" th:onclick="|window.location.href='/board/list'|">상품목록으로</button>
+                    </div>
+                </div>
+
+                <div style="margin-left:220px" >
+                    <div id="map"/>
+                </div>
+            </div>
+
+            <div>
+                <table style="visibility:hidden">
+                    <tr>
+                        <th>상품명</th>
+                        <td th:text="${productInfo.proTitle}"></td>
+                    </tr>
+                    <tr>
+                        <th>가격</th>
+                        <td th:text="${productInfo.price}"></td>
+                    </tr>
+                    <tr>
+                        <th>상품 설명</th>
+
+                        <td th:text="${productInfo.proContent}"></td>
+                    </tr>
+                </table>
+                <hr>
+
+
+                <div class="productImg">
+                    <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
+                         alt="상품 상세 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+                </div>
+            </div>
+            <hr>
+
+            <div sec:authorize="isAuthenticated()" th:fragment="reviewList" th:include="article/list :: reviewList"/>
+
+        </div>
+
+        <script>
+
+    <!--파라미터 받기-->
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    <!--받은 걸로 변수 선언-->
+    var E = getParameterByName('E');
+    var N = getParameterByName('N');
+
+    <!--기본 맵-->
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2l3aWhhbm5haCIsImEiOiJja3IydGp6emsyZmc5Mm5tbnh1ZzA3bXZlIn0.FBt4dq5Av6NR1IbMttcyMA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v10',
+      center: [E, N],
+      zoom: 10
+    });
+
+
+
+</script>
+        <!--<div th:replace="layout/footer :: footer" />-->
+    </div>
+
+
+    <!-- 맨위로 가기 이미지 버튼 시작 -->
+
+    <a href="#" class="jcm-top"><img src="../images/up.png" style="margin-bottom: 85px; width: 90px; margin-inline: -21px;"></a>
+
+    <script>
+
+$( document ).ready( function() {
+
+$( window ).scroll( function() {
+
+if ( $( this ).scrollTop() > 200 ) {
+
+$( '.jcm-top' ).fadeIn();
+
+} else {
+
+$( '.jcm-top' ).fadeOut();
+
+}
+
+} );
+
+$( '.jcm-top' ).click( function() {
+
+$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+
+return false;
+
+} );
+
+} );
+
+</script>
+
+    <!-- 맨위로 가기 이미지 버튼 끝 -->
+</th:block>
+</html>
